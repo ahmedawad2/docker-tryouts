@@ -1,0 +1,15 @@
+version: "2.28"
+
+services:
+
+  web-server:
+    image: "nginx:stable-alpine3.20-perl"
+    ports:
+      - "7070:80"
+
+  info:
+    build:
+      context: ../info
+      dockerfile: InfoDockerFile.yml
+    ports:
+      - "7080:9000"

@@ -1,0 +1,17 @@
+1- to bind the port: use -pHOST_PORT:CONTAINER:PORT
+2- specify a container name: --name NAME
+3- use -d to start a container inn detached mode
+    e.g: docker run -d -p6000:6379 --name redis_old redis:4.0
+4- check container logs: docker logs CONTAINER_NAME OR CONTAINER ID
+5- execute a command inside a container:
+    docker exec -it (if you are executing an interactive program, like bash) CONTAINER_NAME OR ID COMMAND
+    e.g: docker exec -it redis_old /bin/bash
+6- you can also interact with the running redis instance in the container by running the:
+    redis-cli command inside it,
+    or you can reach it from your host machine (if you have redis-cli installed on your host) by running:
+    redis-cli -h <container_ip> -p 6379
+7- 2 containers on the same docker network, can communicate only using container name,
+    no localhost (or host name), or port number are required.
+    it may make sense to assume that whenever a service is mentioned by it's hostname,
+    then the caller and the callee are on the same network
+ 
