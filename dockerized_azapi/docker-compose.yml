@@ -3,13 +3,21 @@ version: "2.28"
 services:
 
   web-server:
+    volumes:
+      - ../nginx.conf:/etc/nginx/conf.d/default.conf 
     image: "nginx:stable-alpine3.20-perl"
+    networks: 
+      - info-network
     ports:
       - "7070:80"
 
   info:
+    networks: 
+      - info-network
+    hostname: info-app
     build:
       context: ../info
       dockerfile: InfoDockerFile.yml
-    ports:
-      - "7080:9000"
+
+networks:
+ info-network:
